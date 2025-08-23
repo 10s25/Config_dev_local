@@ -23,4 +23,4 @@ USER ${USER}
 
 EXPOSE 80
 
-t
+
