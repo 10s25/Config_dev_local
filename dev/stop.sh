@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash  dcf
 
 echo "🛑 Arrêt du serveur de développement..."
 echo "===================================="
