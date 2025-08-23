@@ -50,7 +50,7 @@ docker compose logs -f
 # Redémarrer un service
 docker compose restart apache
 
-# Reconstruire les images
+# Reconstruire les imagesé
 docker compose up --build
 
 # Nettoyer
