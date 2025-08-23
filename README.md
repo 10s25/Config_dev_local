@@ -238,7 +238,7 @@ Si vous avez des problèmes, relancez la configuration :
 Pour utiliser ce projet sur Windows, vous devez installer bash. Choisissez une des options :
 
 1. **Git Bash** ⭐ (le plus simple)
-2. **WSL** (Windows Subsystem for Linux)
+2. **WSL** (Windows Subsystem for Linux) ##
 3. **MSYS2**
 
 Voir les instructions détaillées dans la section "Développement local" ci-dessus.
