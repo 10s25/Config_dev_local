@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash j
 
 # Script de démarrage Docker pour le développement local
 # Usage: ./dev/docker.sh
