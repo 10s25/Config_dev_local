@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentation - Sites Indignons-nous Bloquons tout</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <img src="https://indignonsnous.fr/global/img/logo-inbt.svg" alt="Indignons-nous Bloquons tout" />
+                <span>Dev Tools</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html" class="active">Accueil</a></li>
+                <li><a href="installation.html">Installation</a></li>
+                <li><a href="developpement.html">Développement</a></li>
+                <li><a href="docker.html">Docker</a></li>
+                <li><a href="production.html">Production</a></li>
+                <li><button id="theme-toggle" class="theme-btn">☀️</button></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-logo">
+                <img src="https://indignonsnous.fr/global/img/logo-inbt.svg" alt="Indignons-nous Bloquons tout" />
+            </div>
+            <h1>Outils de développement local</h1>
+            <p class="subtitle">Sites Indignons-nous Bloquons tout</p>
+            <div class="hero-buttons">
+                <a href="installation.html" class="btn btn-primary">Commencer</a>
+                <a href="https://github.com/10s25/Config_dev_local" class="btn btn-secondary" target="_blank">GitHub</a>
+            </div>
+        </section>
+
+        <section class="features">
+            <h2>Fonctionnalités principales</h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🚀</div>
+                    <h3>Démarrage rapide</h3>
+                    <p>Configuration automatique avec scripts bash intelligents</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🐳</div>
+                    <h3>Support Docker</h3>
+                    <p>Environnement complet avec Apache et live reload</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔧</div>
+                    <h3>Outils de dev</h3>
+                    <p>Serveur Python avec support SSI intégré</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📱</div>
+                    <h3>Multi-plateforme</h3>
+                    <p>Compatible Linux, macOS et Windows</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="quick-start">
+            <h2>Démarrage rapide</h2>
+            <div class="code-block">
+                <pre><code># Configuration initiale
+chmod +x dev/setup.sh
+./dev/setup.sh
+
+# Démarrage du serveur
+./dev/start.sh
+
+# Accès : http://localhost:8000</code></pre>
+            </div>
+        </section>
+
+        <section class="ports">
+            <h2>Ports utilisés</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Port</th>
+                        <th>Service</th>
+                        <th>Environnement</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>8000</td>
+                        <td>Serveur Python</td>
+                        <td>Développement</td>
+                    </tr>
+                    <tr>
+                        <td>8080</td>
+                        <td>Apache</td>
+                        <td>Docker</td>
+                    </tr>
+                    <tr>
+                        <td>3000</td>
+                        <td>Live reload</td>
+                        <td>Docker</td>
+                    </tr>
+                    <tr>
+                        <td>3001</td>
+                        <td>BrowserSync</td>
+                        <td>Docker</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Sites Indignons-nous Bloquons tout - Documentation</p>
+    </footer>
+
+    <script src="theme.js"></script>
+</body>
+
+</html>

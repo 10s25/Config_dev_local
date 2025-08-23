@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Développement - Documentation</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <img src="https://indignonsnous.fr/global/img/logo-inbt.svg" alt="Indignons-nous Bloquons tout" />
+                <span>Dev Tools</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="installation.html">Installation</a></li>
+                <li><a href="developpement.html" class="active">Développement</a></li>
+                <li><a href="docker.html">Docker</a></li>
+                <li><a href="production.html">Production</a></li>
+                <li><button id="theme-toggle" class="theme-btn">☀️</button></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="content">
+            <h1>Guide de développement</h1>
+            
+            <h3>Serveur de développement Python</h3>
+            <p>Le serveur Python intégré offre une solution simple et efficace pour le développement local avec support complet des Server-Side Includes (SSI).</p>
+
+            <h4>Démarrage rapide</h4>
+            <div class="code-block">
+                <pre><code># Démarrage du serveur (détection automatique si déjà en cours)
+./dev/start.sh
+
+# Accès : http://localhost:8000</code></pre>
+            </div>
+
+            <h4>Fonctionnalités du serveur</h4>
+            <ul>
+                <li>✅ <strong>Configuration automatique</strong> : Génération automatique du serveur Python</li>
+                <li>✅ <strong>Démarrage intelligent</strong> : Détecte et arrête les anciens processus</li>
+                <li>✅ <strong>Gestion des ports</strong> : Libération automatique du port 8000</li>
+                <li>✅ <strong>Ouverture automatique</strong> : Lance le navigateur automatiquement</li>
+                <li>✅ <strong>Support SSI</strong> : Simulation complète des Server-Side Includes</li>
+                <li>✅ <strong>Menu de développement</strong> : Génération automatique sans conditions SSI</li>
+            </ul>
+
+            <h3>Gestion du serveur</h3>
+            
+            <h4>Arrêt du serveur</h4>
+            <p><strong>Méthode recommandée :</strong> Ouvrir un nouveau terminal</p>
+            <div class="code-block">
+                <pre><code># Dans un nouveau terminal, aller dans le dossier du projet
+cd ~/Bureau/site-main
+
+# Arrêter le serveur proprement
+./dev/stop.sh</code></pre>
+            </div>
+
+            <p><strong>Alternative :</strong> Dans le terminal où tourne le serveur, appuyer sur <strong>Ctrl+C</strong></p>
+
+            <div class="alert alert-info">
+                <strong>💡 Arrêt intelligent :</strong> Le script stop.sh détecte le processus par port et par nom, avec arrêt forcé si nécessaire.
+            </div>
+
+            <h3>Structure des fichiers de développement</h3>
+            
+            <h4>Scripts disponibles</h4>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Script</th>
+                        <th>Description</th>
+                        <th>Usage</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>setup.sh</code></td>
+                        <td>Configuration initiale complète</td>
+                        <td><code>./dev/setup.sh</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>start.sh</code></td>
+                        <td>Démarrage intelligent du serveur</td>
+                        <td><code>./dev/start.sh</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>stop.sh</code></td>
+                        <td>Arrêt propre du serveur</td>
+                        <td><code>./dev/stop.sh</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>prod.sh</code></td>
+                        <td>Préparation pour la production</td>
+                        <td><code>./dev/prod.sh</code></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Technologies utilisées</h3>
+            <ul>
+                <li><strong>HTML + CSS</strong> "old school" pour la simplicité</li>
+                <li><strong>SSI (Server-Side Includes)</strong> pour les includes</li>
+                <li><strong>PHP</strong> pour la génération des groupes</li>
+                <li><strong>Python</strong> pour le serveur de développement</li>
+                <li><strong>Bash</strong> pour l'automatisation</li>
+            </ul>
+
+            <h3>Workflow de développement</h3>
+            
+            <h4>1. Configuration initiale (une seule fois)</h4>
+            <div class="code-block">
+                <pre><code>chmod +x dev/setup.sh
+./dev/setup.sh</code></pre>
+            </div>
+
+            <h4>2. Développement quotidien</h4>
+            <div class="code-block">
+                <pre><code># Démarrer le serveur
+./dev/start.sh
+
+# Développer...
+# Les changements sont visibles immédiatement
+
+# Arrêter le serveur (nouveau terminal)
+./dev/stop.sh</code></pre>
+            </div>
+
+            <h4>3. Préparation pour la production</h4>
+            <div class="code-block">
+                <pre><code># Préparer les fichiers pour la production
+./dev/prod.sh</code></pre>
+            </div>
+
+            <h3>Dépannage courant</h3>
+            
+            <h4>Problèmes de port</h4>
+            <p>Si vous obtenez "Address already in use" :</p>
+            <div class="code-block">
+                <pre><code># Arrêter tous les serveurs
+./dev/stop.sh
+
+# Attendre quelques secondes puis redémarrer
+./dev/start.sh</code></pre>
+            </div>
+
+            <h4>Régénération complète</h4>
+            <p>Si vous avez des problèmes, relancez la configuration :</p>
+            <div class="code-block">
+                <pre><code>./dev/setup.sh
+./dev/start.sh</code></pre>
+            </div>
+
+            <div class="alert alert-success">
+                <strong>✅ Configuration robuste :</strong> Le serveur est configuré avec SO_REUSEADDR pour éviter les conflits de port et redémarre automatiquement en cas de problème.
+            </div>
+
+            <h3>Personnalisation</h3>
+            <p>Vous pouvez personnaliser le comportement du serveur en modifiant les scripts dans le dossier <code>dev/</code>. Les scripts sont conçus pour être facilement modifiables et extensibles.</p>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Sites Indignons-nous Bloquons tout - Documentation</p>
+    </footer>
+
+    <script src="theme.js"></script>
+</body>
+</html>

@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Docker - Documentation</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <img src="https://indignonsnous.fr/global/img/logo-inbt.svg" alt="Indignons-nous Bloquons tout" />
+                <span>Dev Tools</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="installation.html">Installation</a></li>
+                <li><a href="developpement.html">Développement</a></li>
+                <li><a href="docker.html" class="active">Docker</a></li>
+                <li><a href="production.html">Production</a></li>
+                <li><button id="theme-toggle" class="theme-btn">☀️</button></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="content">
+            <h1>Environnement Docker</h1>
+            
+            <p>L'environnement Docker offre une solution complète avec Apache, live reload et BrowserSync pour un développement avancé.</p>
+
+            <h3>Prérequis</h3>
+            <ul>
+                <li><strong>Docker</strong> installé sur votre système</li>
+                <li><strong>Docker Compose</strong> installé</li>
+                <li><strong>Bash</strong> pour exécuter les scripts</li>
+            </ul>
+
+            <h3>Démarrage rapide</h3>
+            <div class="code-block">
+                <pre><code># Donner les permissions d'exécution (si nécessaire)
+chmod +x dev/docker.sh dev/docker-stop.sh
+
+# Démarrage complet de l'environnement
+./dev/docker.sh
+
+# Arrêt de l'environnement
+./dev/docker-stop.sh</code></pre>
+            </div>
+
+            <h3>Services disponibles</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Service</th>
+                        <th>Port</th>
+                        <th>URL</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Apache</td>
+                        <td>8080</td>
+                        <td><a href="http://localhost:8080" target="_blank">http://localhost:8080</a></td>
+                        <td>Serveur web principal</td>
+                    </tr>
+                    <tr>
+                        <td>Live Reload</td>
+                        <td>3000</td>
+                        <td><a href="http://localhost:3000" target="_blank">http://localhost:3000</a></td>
+                        <td>Rechargement automatique</td>
+                    </tr>
+                    <tr>
+                        <td>BrowserSync</td>
+                        <td>3001</td>
+                        <td><a href="http://localhost:3001" target="_blank">http://localhost:3001</a></td>
+                        <td>Interface de synchronisation</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Avantages de l'environnement Docker</h3>
+            <ul>
+                <li>🐳 <strong>Environnement isolé</strong> : Pas de conflit avec votre système</li>
+                <li>🔄 <strong>Live reload</strong> : Rechargement automatique des pages</li>
+                <li>🌐 <strong>Apache réel</strong> : Environnement proche de la production</li>
+                <li>🔧 <strong>BrowserSync</strong> : Synchronisation multi-navigateurs</li>
+                <li>📱 <strong>Test responsive</strong> : Test sur différents appareils</li>
+            </ul>
+
+            <h3>Configuration Docker</h3>
+            
+            <h4>Structure des fichiers Docker</h4>
+            <div class="code-block">
+                <pre><code>docker/
+├── Dockerfile          # Image Apache personnalisée
+├── compose.yaml        # Configuration des services
+└── README.md          # Documentation Docker</code></pre>
+            </div>
+
+            <h4>Services configurés</h4>
+            <p>L'environnement Docker comprend plusieurs services orchestrés :</p>
+            
+            <ul>
+                <li><strong>Web (Apache)</strong> : Serveur principal avec support PHP et SSI</li>
+                <li><strong>Live Reload</strong> : Surveillance des fichiers et rechargement automatique</li>
+                <li><strong>BrowserSync</strong> : Synchronisation des navigateurs et outils de développement</li>
+            </ul>
+
+            <h3>Utilisation avancée</h3>
+            
+            <h4>Commandes Docker manuelles</h4>
+            <div class="code-block">
+                <pre><code># Construire et démarrer les services
+docker-compose -f docker/compose.yaml up --build
+
+# Démarrer en arrière-plan
+docker-compose -f docker/compose.yaml up -d
+
+# Voir les logs
+docker-compose -f docker/compose.yaml logs -f
+
+# Arrêter les services
+docker-compose -f docker/compose.yaml down</code></pre>
+            </div>
+
+            <h4>Accès aux conteneurs</h4>
+            <div class="code-block">
+                <pre><code># Accéder au conteneur Apache
+docker-compose -f docker/compose.yaml exec web bash
+
+# Voir les processus en cours
+docker-compose -f docker/compose.yaml ps
+
+# Redémarrer un service spécifique
+docker-compose -f docker/compose.yaml restart web</code></pre>
+            </div>
+
+            <h3>Développement avec Docker</h3>
+            
+            <h4>Workflow recommandé</h4>
+            <ol>
+                <li>Démarrer l'environnement : <code>./dev/docker.sh</code></li>
+                <li>Ouvrir <a href="http://localhost:8080" target="_blank">http://localhost:8080</a> pour le site</li>
+                <li>Ouvrir <a href="http://localhost:3001" target="_blank">http://localhost:3001</a> pour BrowserSync</li>
+                <li>Modifier vos fichiers - les changements sont automatiquement détectés</li>
+                <li>Arrêter l'environnement : <code>./dev/docker-stop.sh</code></li>
+            </ol>
+
+            <h4>BrowserSync - Fonctionnalités</h4>
+            <ul>
+                <li>🔄 <strong>Rechargement automatique</strong> des pages</li>
+                <li>📱 <strong>Test multi-appareils</strong> synchronisé</li>
+                <li>🎯 <strong>Injection CSS</strong> sans rechargement</li>
+                <li>📊 <strong>Interface de contrôle</strong> sur le port 3001</li>
+                <li>🔍 <strong>Outils de débogage</strong> intégrés</li>
+            </ul>
+
+            <h3>Dépannage Docker</h3>
+            
+            <h4>Problèmes courants</h4>
+            
+            <div class="alert alert-warning">
+                <strong>⚠️ Port déjà utilisé :</strong> Si un port est déjà utilisé, arrêtez les autres services ou modifiez les ports dans <code>docker/compose.yaml</code>
+            </div>
+
+            <div class="code-block">
+                <pre><code># Vérifier les ports utilisés
+netstat -tulpn | grep :8080
+netstat -tulpn | grep :3000
+
+# Forcer l'arrêt de tous les conteneurs
+docker stop $(docker ps -q)
+
+# Nettoyer les ressources Docker
+docker system prune -f</code></pre>
+            </div>
+
+            <h4>Reconstruction complète</h4>
+            <div class="code-block">
+                <pre><code># Arrêter et supprimer tous les conteneurs
+./dev/docker-stop.sh
+
+# Reconstruire complètement
+docker-compose -f docker/compose.yaml build --no-cache
+
+# Redémarrer
+./dev/docker.sh</code></pre>
+            </div>
+
+            <h3>Comparaison avec le serveur Python</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Aspect</th>
+                        <th>Serveur Python</th>
+                        <th>Docker</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Simplicité</td>
+                        <td>✅ Très simple</td>
+                        <td>⚠️ Plus complexe</td>
+                    </tr>
+                    <tr>
+                        <td>Performance</td>
+                        <td>✅ Léger</td>
+                        <td>⚠️ Plus lourd</td>
+                    </tr>
+                    <tr>
+                        <td>Fonctionnalités</td>
+                        <td>⚠️ Basiques</td>
+                        <td>✅ Avancées</td>
+                    </tr>
+                    <tr>
+                        <td>Environnement</td>
+                        <td>⚠️ Système local</td>
+                        <td>✅ Isolé</td>
+                    </tr>
+                    <tr>
+                        <td>Live reload</td>
+                        <td>❌ Manuel</td>
+                        <td>✅ Automatique</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="alert alert-info">
+                <strong>💡 Recommandation :</strong> Utilisez le serveur Python pour un développement simple et rapide, Docker pour un environnement plus proche de la production avec des fonctionnalités avancées.
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Sites Indignons-nous Bloquons tout - Documentation</p>
+    </footer>
+
+    <script src="theme.js"></script>
+</body>
+</html>
