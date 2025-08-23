@@ -1,4 +1,4 @@
-#!/bin/bash  z
+#!/bin/bash  
 
 echo "🚀 Démarrage du serveur de développement..."
 echo "===================================="
