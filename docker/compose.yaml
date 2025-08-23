@@ -20,3 +20,6 @@ services:
       - "3000:3000" # Access the site on this port to have live reload (html, css)
       - "3001:3001" # BrowserSync dashboard (logs, settings...)
     command: npx browser-sync start --proxy "http://apache:80" --files "**/*"
+
+
+    d
