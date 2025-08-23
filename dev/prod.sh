@@ -1,4 +1,4 @@
-#!/bin/bash j
+#!/bin/bash 
 
 # Script de préparation pour la production
 # Remet les fichiers SSI dans leur état original pour Apache
