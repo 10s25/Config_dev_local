@@ -22,3 +22,5 @@ RUN sed -i 's/AllowOverride None/AllowOverride All/' /usr/local/apache2/conf/htt
 USER ${USER}
 
 EXPOSE 80
+
+t
