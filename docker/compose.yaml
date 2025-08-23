@@ -22,4 +22,4 @@ services:
     command: npx browser-sync start --proxy "http://apache:80" --files "**/*"
 
 
-    d
+    
