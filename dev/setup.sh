@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash  #
 
 # Script de configuration automatique du projet
 # Usage: ./dev/setup.sh
