@@ -1,4 +1,4 @@
-#!/bin/bash  j
+#!/bin/bash  
 
 # Script d'arrêt des conteneurs Docker
 # Usage: ./dev/docker-stop.sh
