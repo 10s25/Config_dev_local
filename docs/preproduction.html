@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Production - Documentation</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <img src="https://indignonsnous.fr/global/img/logo-inbt.svg" alt="Indignons-nous Bloquons tout" />
+                <span>Dev Tools</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="installation.html">Installation</a></li>
+                <li><a href="python.html">Python</a></li>
+                <li><a href="preproduction.html" class="active">Préproduction Python</a></li>
+                <li><a href="docker.html">Docker</a></li>
+                <li><button id="theme-toggle" class="theme-btn">☀️</button></li>
+            </ul>
+            <div class="hamburger" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <div class="content">
+            <h1>Python Préproduction</h1>
+            
+            <p>Le script de production prépare automatiquement votre projet pour le déploiement en configurant les fichiers SSI et en nettoyant les ressources de développement.</p>
+
+            <h3>Préparation pour la production</h3>
+            <div class="code-block">
+                <pre><code># Donner les permissions d'exécution (si nécessaire)
+chmod +x dev/prod.sh
+
+# Préparer pour la production
+./dev/prod.sh</code></pre>
+            </div>
+
+            <div class="alert alert-success">
+                <strong>✅ Automatisation complète :</strong> Le script prod.sh configure automatiquement le menu SSI, les fichiers .htaccess et nettoie les ressources de développement.
+            </div>
+
+            <h3>Modifications apportées par le script</h3>
+            
+            <h4>Configuration SSI</h4>
+            <ul>
+                <li>🔧 <strong>Menu SSI</strong> : Remplacement du menu de développement par le menu SSI de production</li>
+                <li>📝 <strong>Includes</strong> : Configuration des Server-Side Includes pour Apache</li>
+                <li>⚙️ <strong>.htaccess</strong> : Restauration de la configuration Apache de production</li>
+            </ul>
+
+            <h4>Nettoyage des fichiers</h4>
+            <ul>
+                <li>🗑️ <strong>Fichiers de développement</strong> : Suppression ou masquage des outils de dev</li>
+                <li>🔒 <strong>Sécurité</strong> : Configuration des règles de sécurité Apache</li>
+                <li>📦 <strong>Optimisation</strong> : Préparation des fichiers pour la production</li>
+            </ul>
+
+            <h3>Structure de production</h3>
+            <p>Après exécution du script de production, votre projet aura la structure suivante :</p>
+            
+            <div class="code-block">
+                <pre><code>├── index.html              # Page d'accueil (menu SSI activé)
+├── global/                 # Ressources partagées
+│   ├── global.css         # Styles globaux
+│   ├── ssi/               # Includes SSI
+│   └── ...
+├── local/                  # Personnalisations locales
+├── src/                    # Scripts PHP (si nécessaires)
+├── .htaccess              # Configuration Apache de production
+└── favicon.ico            # Icône du site
+
+# Dossiers ignorés/masqués en production :
+├── dev/                   # Outils de développement (ignorés)
+├── docker/                # Configuration Docker (ignorée)
+└── docs/                  # Documentation (ignorée)</code></pre>
+            </div>
+
+            <h3>Configuration Apache (.htaccess)</h3>
+            <p>Le fichier .htaccess de production inclut :</p>
+            
+            <h4>Sécurité</h4>
+            <ul>
+                <li>🛡️ <strong>Protection des dossiers sensibles</strong> (dev/, docker/, src/)</li>
+                <li>🔒 <strong>Masquage des fichiers de configuration</strong></li>
+                <li>🚫 <strong>Blocage des accès non autorisés</strong></li>
+            </ul>
+
+            <h4>Performance</h4>
+            <ul>
+                <li>⚡ <strong>Compression gzip</strong> pour les fichiers statiques</li>
+                <li>📦 <strong>Cache des ressources</strong> (CSS, JS, images)</li>
+                <li>🔄 <strong>Redirections optimisées</strong></li>
+            </ul>
+
+            <h4>SSI (Server-Side Includes)</h4>
+            <ul>
+                <li>📄 <strong>Activation des includes</strong> pour les fichiers .html</li>
+                <li>🔧 <strong>Configuration des directives SSI</strong></li>
+                <li>⚙️ <strong>Gestion des erreurs SSI</strong></li>
+            </ul>
+
+            <h3>Déploiement sur serveur</h3>
+            
+            <h4>Prérequis serveur</h4>
+            <ul>
+                <li><strong>Apache</strong> avec mod_rewrite activé</li>
+                <li><strong>PHP</strong> (si utilisation des scripts de génération)</li>
+                <li><strong>Support SSI</strong> (Server-Side Includes) activé</li>
+            </ul>
+
+            <h4>Méthodes de déploiement</h4>
+            
+            <h5>1. FTP/SFTP</h5>
+            <div class="code-block">
+                <pre><code># Après avoir exécuté ./dev/prod.sh
+# Transférer tous les fichiers sauf :
+# - dev/
+# - docker/
+# - docs/
+# - .git/</code></pre>
+            </div>
+
+            <h5>2. Git (recommandé)</h5>
+            <div class="code-block">
+                <pre><code># Sur le serveur
+git clone https://github.com/10s25/dev_local.git
+cd dev_local
+
+# Préparer pour la production
+chmod +x dev/prod.sh
+./dev/prod.sh</code></pre>
+            </div>
+
+            <h5>3. Rsync</h5>
+            <div class="code-block">
+                <pre><code># Synchronisation avec exclusions
+rsync -avz --exclude='dev/' --exclude='docker/' --exclude='docs/' \
+      --exclude='.git/' ./ user@server:/path/to/website/</code></pre>
+            </div>
+
+            <h3>Vérifications post-déploiement</h3>
+            
+            <h4>Tests à effectuer</h4>
+            <ol>
+                <li>✅ <strong>Accès au site</strong> : Vérifier que le site se charge correctement</li>
+                <li>✅ <strong>Menu SSI</strong> : Vérifier que le menu s'affiche (pas de conditions de développement)</li>
+                <li>✅ <strong>Includes SSI</strong> : Vérifier que tous les includes fonctionnent</li>
+                <li>✅ <strong>Sécurité</strong> : Tester l'accès aux dossiers protégés (dev/, docker/)</li>
+                <li>✅ <strong>Performance</strong> : Vérifier la compression et le cache</li>
+            </ol>
+
+            <h4>Outils de test</h4>
+            <div class="code-block">
+                <pre><code># Test de compression
+curl -H "Accept-Encoding: gzip" -I http://votre-site.com/
+
+# Test de sécurité
+curl -I http://votre-site.com/dev/
+curl -I http://votre-site.com/docker/
+
+# Test SSI
+curl http://votre-site.com/ | grep "menu"</code></pre>
+            </div>
+
+            <h3>Retour en développement</h3>
+            <p>Pour revenir en mode développement après avoir préparé la production :</p>
+            <div class="code-block">
+                <pre><code># Relancer la configuration de développement
+./dev/setup.sh
+
+# Démarrer le serveur de développement
+./dev/start.sh</code></pre>
+            </div>
+
+            <div class="alert alert-info">
+                <strong>💡 Workflow recommandé :</strong> Gardez une branche ou un dossier séparé pour la production, et un autre pour le développement. Cela évite les allers-retours entre les configurations.
+            </div>
+
+            <h3>Maintenance et mises à jour</h3>
+            
+            <h4>Mise à jour du contenu</h4>
+            <ol>
+                <li>Modifier les fichiers en local</li>
+                <li>Tester avec <code>./dev/start.sh</code></li>
+                <li>Préparer pour la production avec <code>./dev/prod.sh</code></li>
+                <li>Déployer les modifications</li>
+            </ol>
+
+            <h4>Sauvegarde</h4>
+            <ul>
+                <li>📦 <strong>Code source</strong> : Sauvegardé via Git</li>
+                <li>🗃️ <strong>Données</strong> : Sauvegarder les fichiers générés (si applicable)</li>
+                <li>⚙️ <strong>Configuration</strong> : Sauvegarder les .htaccess personnalisés</li>
+            </ul>
+
+            <div class="alert alert-warning">
+                <strong>⚠️ Important :</strong> Testez toujours vos modifications en local avant de déployer en production. Le script prod.sh modifie les fichiers de manière irréversible (sauf si vous avez une sauvegarde Git).
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Sites Indignons-nous Bloquons tout - Documentation</p>
+    </footer>
+
+    <script src="theme.js"></script>
+</body>
+</html>

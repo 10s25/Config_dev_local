@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Installation - Documentation</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <img src="https://indignonsnous.fr/global/img/logo-inbt.svg" alt="Indignons-nous Bloquons tout" />
+                <span>Dev Tools</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="installation.html" class="active">Installation</a></li>
+                <li><a href="python.html">Python</a></li>
+                <li><a href="preproduction.html">Préproduction Python</a></li>
+                <li><a href="docker.html">Docker</a></li>
+                <li><button id="theme-toggle" class="theme-btn">☀️</button></li>
+            </ul>
+            <div class="hamburger" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <div class="content">
+            <h1>Installation et configuration</h1>
+            
+            <div class="alert alert-warning">
+                <strong>⚠️ Configuration Apache requise :</strong> Pour les options Apache, n'oubliez pas de configurer les Server-Side Includes (SSI). Consultez le guide : <a href="https://github.com/10s25/site/wiki/Configuration-SSI" target="_blank">Configuration SSI</a>
+            </div>
+            
+            <h2>Options d'installation</h2>
+            
+            <h3>Option 1 : Apache local (Linux)</h3>
+            <p>Installation d'Apache directement sur votre système Linux.</p>
+            
+            <h4>Prérequis</h4>
+            <ul>
+                <li><strong>Git</strong> - pour cloner le projet</li>
+                <li><strong>Apache</strong> - serveur web</li>
+            </ul>
+            
+            <h4>Installation</h4>
+            <div class="code-block">
+                <pre><code># Installation Apache
+sudo apt update
+sudo apt install apache2
+
+# Cloner le projet dans le dossier de votre choix
+# Exemples selon votre environnement :
+git clone https://github.com/10s25/dev_local.git ~/Bureau/site-main
+# ou ~/Desktop/site-main ou ~/Documents/site-main
+cd ~/Bureau/site-main  # adaptez le chemin
+
+# Créer un lien symbolique vers Apache
+sudo ln -s ~/Bureau/site-main /var/www/html/site
+
+# Démarrage du service
+sudo systemctl start apache2
+sudo systemctl enable apache2</code></pre>
+            </div>
+            
+            <div class="alert alert-info">
+                <strong>📋 Configuration SSI requise :</strong> Voir la documentation complète : <a href="https://github.com/10s25/site/wiki/Configuration-SSI" target="_blank">Configuration SSI</a>
+            </div>
+            
+            <div class="alert alert-info">
+                <strong>📊 Avantage :</strong> Le projet reste dans votre dossier utilisateur, facile à éditer sans permissions sudo.
+            </div>
+            
+            <div class="alert alert-warning">
+                <strong>⚠️ Attention :</strong> Si votre dossier <code>~/Bureau/site-main</code> bouge ou change de nom, le lien symbolique cassera.<br>
+                → <strong>Alternative plus propre :</strong> copier le site dans <code>/var/www/html/</code> directement ou utiliser un VirtualHost.
+            </div>
+            
+            <p><strong>Vérification :</strong> Ouvrez dans votre navigateur : <a href="http://localhost/site/" target="_blank">👉 http://localhost/site/</a></p>
+            
+            <div class="alert alert-warning">
+                <strong>⚠️ Chemins variables :</strong> Les chemins comme <code>~/Bureau/</code> ou <code>~/Desktop/</code> dépendent de la langue de votre système. Vous pouvez cloner le projet dans n'importe quel dossier de votre choix.
+            </div>
+            
+            <h3>Option 2 : WAMP/MAMP/LAMP (Windows/macOS/Linux)</h3>
+            <p>Solutions tout-en-un pour toutes les plateformes.</p>
+            
+            <h4>Windows - WAMP</h4>
+            <ol>
+                <li>Téléchargez <a href="https://www.wampserver.com/" target="_blank">WampServer</a></li>
+                <li>Installez et démarrez tous les services</li>
+                <li>Clonez le projet dans le dossier <code>www</code></li>
+            </ol>
+            
+            <h4>macOS - MAMP</h4>
+            <ol>
+                <li>Téléchargez <a href="https://www.mamp.info/" target="_blank">MAMP</a></li>
+                <li>Installez et démarrez Apache</li>
+                <li>Clonez le projet dans le dossier <code>htdocs</code></li>
+            </ol>
+            
+            <h4>Linux - LAMP</h4>
+            <ol>
+                <li>Installez LAMP stack ou utilisez des solutions comme XAMPP</li>
+                <li>Démarrez les services Apache</li>
+                <li>Clonez le projet dans le dossier web approprié</li>
+            </ol>
+            
+            <div class="code-block">
+                <pre><code># Cloner le projet (adaptez le chemin selon votre configuration)
+git clone https://github.com/10s25/dev_local.git</code></pre>
+            </div>
+            
+            <div class="alert alert-info">
+                <strong>📋 Configuration SSI requise :</strong> Voir la documentation complète : <a href="https://github.com/10s25/site/wiki/Configuration-SSI" target="_blank">Configuration SSI</a>
+            </div>
+            
+            <h3>Option 3 : Serveur Python (développement)</h3>
+            <p>Solution simple avec serveur Python intégré et support SSI automatique.</p>
+            
+            <h4>Prérequis</h4>
+            <ul>
+                <li><strong>Git</strong> - pour cloner le projet</li>
+                <li><strong>Python 3.x</strong> - pour le serveur de développement</li>
+                <li><strong>Bash</strong> - pour exécuter les scripts (voir instructions Windows)</li>
+            </ul>
+
+            <h4>Installation sur Linux/macOS</h4>
+            <div class="code-block">
+                <pre><code># Cloner le projet
+git clone https://github.com/10s25/dev_local.git
+cd dev_local
+
+# Donner les permissions d'exécution au script de setup
+chmod +x dev/setup.sh
+
+# Lancer la configuration initiale
+./dev/setup.sh</code></pre>
+            </div>
+
+            <div class="alert alert-success">
+                <strong>✅ Configuration automatique :</strong> Le script setup.sh génère automatiquement le serveur Python avec support SSI et configure tous les fichiers nécessaires.
+            </div>
+
+            <h4>Installation sur Windows</h4>
+            <p>Pour utiliser les scripts sur Windows, vous devez d'abord installer bash. Choisissez une des options suivantes :</p>
+
+            <h5>Méthode 1 : Git Bash (recommandé)</h5>
+            <ol>
+                <li>Téléchargez et installez <a href="https://git-scm.com/download/win" target="_blank">Git for Windows</a></li>
+                <li>Git Bash sera disponible dans le menu Démarrer</li>
+                <li>Ouvrez Git Bash et naviguez vers votre projet</li>
+            </ol>
+
+            <h5>Méthode 2 : WSL (Windows Subsystem for Linux)</h5>
+            <div class="code-block">
+                <pre><code># Dans PowerShell en tant qu'administrateur
+wsl --install
+# Redémarrez votre ordinateur
+# Puis ouvrez Ubuntu depuis le menu Démarrer</code></pre>
+            </div>
+
+            <h5>Méthode 3 : MSYS2</h5>
+            <ol>
+                <li>Téléchargez <a href="https://www.msys2.org/" target="_blank">MSYS2</a></li>
+                <li>Suivez les instructions d'installation</li>
+                <li>Utilisez le terminal MSYS2</li>
+            </ol>
+
+            <p>Une fois bash installé, utilisez les mêmes commandes que sur Linux/macOS :</p>
+            <div class="code-block">
+                <pre><code># Configuration initiale
+chmod +x dev/setup.sh
+./dev/setup.sh</code></pre>
+            </div>
+
+            <h3>Vérification de l'installation</h3>
+            <p>Pour vérifier que tout fonctionne correctement :</p>
+            <div class="code-block">
+                <pre><code># Démarrer le serveur de développement
+./dev/start.sh
+
+# Le navigateur devrait s'ouvrir automatiquement sur :
+# http://localhost:8000</code></pre>
+            </div>
+
+            <div class="alert alert-info">
+                <strong>💡 Astuce :</strong> Le serveur détecte automatiquement s'il y a déjà un processus en cours et le remplace intelligemment.
+            </div>
+
+            <h3>Structure du projet après installation</h3>
+            <div class="code-block">
+                <pre><code>├── index.html              # Page d'accueil
+├── global/                 # Ressources partagées (CSS, JS, SSI)
+├── local/                  # Personnalisations locales
+├── src/                    # Scripts PHP de génération
+├── dev/                    # Outils de développement
+│   ├── setup.sh           # Configuration initiale
+│   ├── start.sh           # Démarrage du serveur
+│   ├── stop.sh            # Arrêt du serveur
+│   └── prod.sh            # Préparation production
+├── docker/                 # Configuration Docker
+├── favicon.ico            # Icône du site
+└── .htaccess              # Configuration Apache</code></pre>
+            </div>
+
+            <h3>Dépannage des permissions</h3>
+            <p>Si vous rencontrez des problèmes de permissions :</p>
+            <div class="code-block">
+                <pre><code># Donner les permissions à tous les scripts d'un coup
+chmod +x dev/*.sh
+
+# Ou individuellement si nécessaire
+chmod +x dev/setup.sh
+chmod +x dev/start.sh
+chmod +x dev/stop.sh
+chmod +x dev/prod.sh</code></pre>
+            </div>
+
+            <div class="alert alert-warning">
+                <strong>⚠️ Note :</strong> Le script setup.sh attribue automatiquement les permissions aux autres scripts, donc normalement seule la première commande est nécessaire.
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Sites Indignons-nous Bloquons tout - Documentation</p>
+    </footer>
+
+    <script src="theme.js"></script>
+</body>
+</html>
